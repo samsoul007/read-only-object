@@ -10,8 +10,9 @@ const handler = {
    * @return {any}
    */
   get(obj, prop) {
-    //If the code is trying to do toJSON() on the object
-    if(prop === "toJSON")
+
+    //Fix if property is a symbol or if it is 'toJSON', maybe a better way to catch those?
+    if(typeof prop === 'symbol' || prop === 'toJSON')
       return obj
 
     //If the property is not part of this object we throw an error
@@ -36,6 +37,9 @@ const handler = {
    */
   set() {
     throw new ReferenceError('not allowed to set values');
+  },
+  toJSON() {
+    console.log(arguments)
   }
 };
 
