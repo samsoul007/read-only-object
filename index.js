@@ -37,9 +37,6 @@ const handler = {
    */
   set() {
     throw new ReferenceError('not allowed to set values');
-  },
-  toJSON() {
-    console.log(arguments)
   }
 };
 
